@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Informatics.FiskeBoden.Pages.AddProductPage"
+             Title="Add Product"
+             WidthRequest="600"
+             HeightRequest="1000">
+
+    <VerticalStackLayout Padding="20" Margin="20" Spacing="15">
+
+        <Entry x:Name="ProductNoEntry"
+               Placeholder="Product No"
+               IsEnabled="{Binding IsEditMode, Converter={StaticResource InvertedBoolConverter}}" />
+
+        <Entry x:Name="ProductNameEntry"
+               Placeholder="Product Name" />
+
+        <Label Text="Measurement Unit:" />
+        <HorizontalStackLayout>
+            <RadioButton x:Name="StRadioButton"
+                         Content="Per unit" />
+            <RadioButton x:Name="KgRadioButton"
+                         Content="Per kilogram" />
+        </HorizontalStackLayout>
+
+        <Picker x:Name="CategoryPicker"
+                Title="Select Category: "
+                ItemsSource="{Binding Categories}"
+                ItemDisplayBinding="{Binding CategoryName}"
+                SelectedIndexChanged="CategoryPicker_SelectedIndexChanged" />
+
+        <Button Text="Save"
+                Clicked="OnSaveButtonClicked" />
+
+        <Button Text="Cancel"
+                Clicked="OnCancelButtonClicked"
+                BackgroundColor="Red"
+                TextColor="White" />
+
+    </VerticalStackLayout>
+</ContentPage>

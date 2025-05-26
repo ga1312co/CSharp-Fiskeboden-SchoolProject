@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Informatics.FiskebodenMauiClient.ViewModels"
+             x:Class="Informatics.FiskebodenMauiClient.Pages.ProductCatalogPage"
+             Title="Product Catalog"
+             BackgroundColor="#f5f5f5">
+   <Grid RowDefinitions="Auto,Auto,*" Padding="16" WidthRequest="1000">
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" Spacing="8" Margin="0,0,0,16">
+            <Label Text="Fiskeboden Product Catalog" 
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center"
+                   TextColor="#2c3e50" />
+        </VerticalStackLayout>
+        
+        <!-- Search Section -->
+        <Grid Grid.Row="1" ColumnDefinitions="*, Auto" Margin="0,0,0,16">
+            <Frame Grid.Column="0" 
+                   Padding="15,0" 
+                   CornerRadius="8"
+                   HasShadow="False"
+                   BorderColor="#dddddd">
+                <Grid ColumnDefinitions="Auto,*">
+                    <Image Grid.Column="0"
+                           Source="search.png"
+                           HeightRequest="20"
+                           WidthRequest="20"
+                           VerticalOptions="Center"
+                           Opacity="0.6"
+                           IsVisible="False"/> <!-- Replace with actual search icon if available -->
+                    <Entry Grid.Column="1"
+                           Placeholder="Enter Product Number"
+                           Text="{Binding SearchText}"
+                           VerticalOptions="Center"
+                           Margin="5,0,0,0"
+                           FontSize="16"/>
+                </Grid>
+            </Frame>
+            <Button Grid.Column="1"
+                    Text="Search"
+                    Command="{Binding SearchCommand}"
+                    BackgroundColor="#3498db"
+                    TextColor="White"
+                    CornerRadius="8"
+                    HeightRequest="46"
+                    Margin="8,0,0,0"/>
+        </Grid>
+        
+        <!-- Actions Section -->
+        <Button Grid.Row="2" VerticalOptions="Start"
+                Text="View All Products" 
+                Command="{Binding RefreshCommand}" 
+                BackgroundColor="#3498db" 
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="8"
+                HeightRequest="46"
+                HorizontalOptions="Fill"
+                Margin="0,0,0,0" />
+                
+        <!-- Products List - keep your existing CollectionView implementation -->
+        <ScrollView Grid.Row="2" Margin="0,46,0,0" Padding="0,10,0,0">
+            <CollectionView ItemsSource="{Binding Products}" 
+                           HorizontalOptions="Center">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="0,8" 
+                               Padding="20,16, 20, 16" 
+                               CornerRadius="12" 
+                               HasShadow="True"
+                               BorderColor="#dddddd"
+                               BackgroundColor="White">
+                            <Grid RowSpacing="8" ColumnSpacing="12" 
+                                  RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" 
+                                  ColumnDefinitions="Auto,*,Auto">
+                                
+                                <!-- Product Name -->
+                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                                       Text="{Binding ProductName}" 
+                                       FontSize="20" 
+                                       FontAttributes="Bold"
+                                       TextColor="#2c3e50"
+                                       LineBreakMode="TailTruncation" />
+                                
+                                <!-- Product Number & Category in a horizontal layout -->
+                                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                       Text="{Binding ProductNo, StringFormat='# {0}'}" 
+                                       FontSize="14"
+                                       TextColor="#7f8c8d" />
+                                       
+                                <Label Grid.Row="1" Grid.Column="2"
+                                       Text="{Binding CategoryName}"
+                                       FontSize="14"
+                                       TextColor="#3498db"
+                                       HorizontalOptions="End"
+                                       FontAttributes="Bold" />
+                                
+                                <!-- Measurement Type - visually styled based on value -->
+                                <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                                       BackgroundColor="#ecf0f1"
+                                       Padding="8,4"
+                                       CornerRadius="6"
+                                       HorizontalOptions="Start">
+                                    <Label>
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" 
+                                                        Binding="{Binding IsMeasuredInUnits}" 
+                                                        Value="True">
+                                                <Setter Property="Text" Value="Sold by: Units" />
+                                                <Setter Property="TextColor" Value="#27ae60" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Label" 
+                                                        Binding="{Binding IsMeasuredInUnits}" 
+                                                        Value="False">
+                                                <Setter Property="Text" Value="Sold by: Weight" />
+                                                <Setter Property="TextColor" Value="#e67e22" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </Frame>
+                                
+                                <!-- Divider -->
+                                <BoxView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+                                         HeightRequest="1"
+                                         BackgroundColor="#e0e0e0"
+                                         Margin="0,8" />
+                                
+                                <!-- Batch Numbers Header -->
+                                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"
+                                       Text="Available Batches" 
+                                       FontSize="14" 
+                                       FontAttributes="Bold"
+                                       TextColor="#2c3e50" />
+                                
+                                <!-- Batch Numbers Collection -->
+                                <CollectionView Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"
+                                              ItemsSource="{Binding BatchNumbers}"
+                                              Margin="4,0,0,0">
+                                    <CollectionView.EmptyView>
+                                        <Label Text="No batches available" 
+                                               TextColor="#95a5a6"
+                                               FontSize="12"
+                                               FontAttributes="Italic" />
+                                    </CollectionView.EmptyView>
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal" 
+                                                          ItemSpacing="8" />
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame BackgroundColor="#f0f8ff" 
+                                                  Padding="10,4" 
+                                                  CornerRadius="6"
+                                                  HasShadow="False"
+                                                  BorderColor="#bde0fe">
+                                                <Label Text="{Binding}" 
+                                                      FontSize="12"
+                                                      TextColor="#0077b6" />
+                                            </Frame>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,132 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Informatics.FiskeBoden.MainPage"
+             BackgroundColor="Transparent">
+
+    <Grid>
+        <!-- Container to center and lock aspect ratio -->
+        <ContentView x:Name="ImageContainer"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     WidthRequest="1024"
+                     HeightRequest="1024">
+
+            <Grid>
+                <!-- Background image -->
+                <Image Source="fiskebod_graphic.png"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Fill"
+                       VerticalOptions="Fill" />
+
+                <!-- Overlay with clickable areas -->
+                <AbsoluteLayout>
+
+                    <!-- Batches -->
+                    <Border BackgroundColor="Transparent"
+                            Stroke="Transparent"
+                            StrokeThickness="2"
+                            AbsoluteLayout.LayoutBounds="0.334, 0.54, 0.099, 0.09"
+                            AbsoluteLayout.LayoutFlags="All">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Stroke" Value="LightCoral" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Stroke" Value="IndianRed" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBatchesClicked" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- Products -->
+                    <Border BackgroundColor="Transparent"
+                            Stroke="Transparent"
+                            StrokeThickness="2"
+                            AbsoluteLayout.LayoutBounds="0.672, 0.54, 0.099, 0.09"
+                            AbsoluteLayout.LayoutFlags="All">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Stroke" Value="LightCoral" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Stroke" Value="IndianRed" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnProductsClicked" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- Ad Generator -->
+                    <Border BackgroundColor="Transparent"
+                            Stroke="Transparent"
+                            StrokeThickness="2"
+                            AbsoluteLayout.LayoutBounds="0.165, 0.6690, 0.110, 0.056"
+                            AbsoluteLayout.LayoutFlags="All">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Stroke" Value="LightCoral" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Stroke" Value="IndianRed" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAdMakerClicked" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- Supplier -->
+                    <Border BackgroundColor="Transparent"
+                            Stroke="Transparent"
+                            StrokeThickness="2"
+                            AbsoluteLayout.LayoutBounds="0.8355, 0.66, 0.10, 0.052"
+                            AbsoluteLayout.LayoutFlags="All">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Stroke" Value="LightCoral" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Stroke" Value="IndianRed" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSupplierTapped" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                </AbsoluteLayout>
+            </Grid>
+        </ContentView>
+    </Grid>
+</ContentPage>

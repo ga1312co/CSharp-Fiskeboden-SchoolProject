@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Informatics.FiskeBoden.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Informatics.FiskeBoden"
+    Shell.FlyoutBehavior="Flyout"
+    xmlns:pages="clr-namespace:Informatics.FiskeBoden.Pages"
+    Title="Informatics.FiskeBoden">
+
+    <ShellContent Title="Home" ContentTemplate="{DataTemplate local:MainPage}" />
+    <ShellContent Title="Batches" ContentTemplate="{DataTemplate pages:BatchesPage}" />
+    <ShellContent Title="Products" ContentTemplate="{DataTemplate pages:ProductsPage}" />
+    <ShellContent Title="Ad Maker" ContentTemplate="{DataTemplate pages:AdPage}" />
+    <ShellContent Title="Suppliers" Route="SupplierPage" ContentTemplate="{DataTemplate pages:SupplierPage}" />
+
+</Shell>
+
+

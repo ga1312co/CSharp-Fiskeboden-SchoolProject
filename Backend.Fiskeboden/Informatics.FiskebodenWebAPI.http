@@ -1,0 +1,6 @@
+@Informatics.FiskebodenWebAPI_HostAddress = http://localhost:5211
+
+GET {{Informatics.FiskebodenWebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

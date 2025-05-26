@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Informatics.FiskeBoden.Pages.ProductsPage"
+             Title="Products Page">
+    <Grid Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TableView x:Name="ProductsTableView"
+                   Grid.Row="0">
+            <TableRoot>
+                <TableSection Title="Products" />
+            </TableRoot>
+        </TableView>
+        <HorizontalStackLayout 
+                              HorizontalOptions="Center"
+                              Spacing="10"
+                              Margin="0,20,0,10"
+                              Grid.Row="1">
+            <Button Text="Add Product" 
+                    Clicked="OnAddProductClicked" 
+                    BackgroundColor="#FF6EDD6E" />
+            <Button Text="Edit Product" 
+                    Clicked="OnEditProductClicked" 
+                    BackgroundColor="#FFFFD54A" />
+            <Button Text="Remove Product" 
+                    Clicked="OnRemoveProductClicked" 
+                    BackgroundColor="#FFFF4343" />
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Informatics.FiskebodenMauiClient.MainPage"
+             BackgroundColor="#f5f5f5">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20">
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" Spacing="10" Margin="0,40,0,0">
+            <Image Source="fiskebod_logo.png" 
+                   HeightRequest="250" 
+                   HorizontalOptions="Center" 
+                   Margin="0,0,0,16"/>
+        </VerticalStackLayout>
+        
+        <!-- Main Actions -->
+        <VerticalStackLayout Grid.Row="1" 
+                             VerticalOptions="Start" 
+                             Spacing="16">
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Button Text="Browse Product Catalog" 
+                    Clicked="OnBrowseCatalogClicked"
+                    BackgroundColor="#3498db" 
+                    TextColor="White"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+                    HeightRequest="60"
+                    Margin="20,0" />
+            <Button Text="Browse Batches" 
+                    Clicked="OnBrowseBatchesClicked"
+                    BackgroundColor="#3498db" 
+                    TextColor="White"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+                    HeightRequest="60"
+                    Margin="20,0" />
+            </HorizontalStackLayout>
+           
+        </VerticalStackLayout>
+
+        <!-- Footer -->
+        <Label Grid.Row="2" 
+               Text="© 2025 Surströmmings Solutions" 
+               TextColor="#95a5a6"
+               FontSize="12"
+               HorizontalOptions="Center"
+               VerticalOptions="End"
+               Margin="0,0,0,10" />
+    </Grid>
+</ContentPage>
